@@ -13,7 +13,14 @@
           class="org.ost.springcourse.ClassicMusic">
     </bean>
     <bean id="musicRockBean"
-          class="org.ost.springcourse.RockMusic">
+          class="org.ost.springcourse.RockMusic"
+            init-method="doMyInitialization"
+            destroy-method="doMyDestruction"
+            factory-method="factoryMethodRockMusic">
+        <!--со scope prototype spring не использует destroy-method-->
+        <!--spring не берет на себя полный жизненный цикл бинов с scope prototype-->
+        <!--не завивисимо от того что factory-method factoryMethodRockMusic возвращает объекь new, spring будет
+        возвращать ссылку на один и тот же объект (singleton), под капотом метод factoryMethodRockMusic будет вызван один раз -->
     </bean>
     <bean id="musicRapBean"
           class="org.ost.springcourse.RapMusic">
@@ -35,7 +42,7 @@
 
     <bean id="musicPlayer"
           class="org.ost.springcourse.MusicPlayer"
-          scope="prototype"> <!-- scope задает паттерн создания bean -->
+          scope="prototype"> <!-- scope задает паттерн создания bean, default scope - singleton -->
         <property name="list" ref="listBean"/>
 
         <property name="name" value="${musicPlayer.name}"/>
