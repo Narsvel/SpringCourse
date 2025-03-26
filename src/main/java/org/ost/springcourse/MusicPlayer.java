@@ -1,43 +1,40 @@
 package org.ost.springcourse;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MusicPlayer {
 
-    private List<Music> list = new ArrayList<>();
+//    private Music music;
+//
+//    @Autowired
+//    public MusicPlayer(Music music) { //будет ошибка т.к. несколько бинов подходит для Music (ClassicalMusic, RockMusic, RapMusic)
+//        this.music = music;
+//    }
 
-    private String name;
-    private int volume;
+    private ClassicMusic classicMusic;  //через рефлексию spring может использовать @Autowired даже на приватном поле
+    private RockMusic rockMusic;
 
-    public List<Music> getList() {
-        return list;
+    @Autowired
+    public MusicPlayer(ClassicMusic classicMusic, RockMusic rockMusic) {
+        this.classicMusic = classicMusic;
+        this.rockMusic = rockMusic;
     }
 
-    public void setList(List<Music> list) {
-        this.list = list;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getVolume() {
-        return volume;
-    }
-
-    public void setVolume(int volume) {
-        this.volume = volume;
-    }
+//    @Autowired
+//    public void setClassicMusic(ClassicMusic classicMusic) {
+//        this.classicMusic = classicMusic;
+//    }
 
     public void playMusic() {
-        for (Music music : list) {
-            System.out.println("Playing: " + music.getPlaySong());
-        }
+        System.out.println("Playing: " + classicMusic.getPlaySong());
+        System.out.println("Playing: " + rockMusic.getPlaySong());
     }
+
+    public String toMusic() {
+        return "Playing: " + classicMusic.getPlaySong() + " and " + rockMusic.getPlaySong();
+    }
+
 
 }

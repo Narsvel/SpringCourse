@@ -10,24 +10,19 @@ public class Main {
                 "applicationContext.xml"
         );
 
-        RockMusic rockMusic = context.getBean("musicRockBean", RockMusic.class);
-        System.out.println(rockMusic.getPlaySong());
-        RockMusic secondRockMusic = context.getBean("musicRockBean", RockMusic.class);
-        System.out.println(rockMusic == secondRockMusic);
+        MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+        musicPlayer.playMusic();
 
-//        MusicPlayer firstMusicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
-//        MusicPlayer secondMusicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+        Computer computer = context.getBean("computer", Computer.class);
+        System.out.println(computer);
+
+//        Music music = context.getBean("rockMusic", Music.class);
+//        MusicPlayer musicPlayer = new MusicPlayer(music);
+//        musicPlayer.playMusic();
 //
-//        System.out.println(firstMusicPlayer == secondMusicPlayer); //true т.к. по default используется scope паттерн singleton
-//
-//        firstMusicPlayer.playMusic();
-//
-//        System.out.println(firstMusicPlayer.getName());
-//        System.out.println(firstMusicPlayer.getVolume());
-//
-//        firstMusicPlayer.setVolume(10);
-//        System.out.println(firstMusicPlayer.getVolume());
-//        System.out.println(secondMusicPlayer.getVolume());
+//        Music music2 = context.getBean("classicMusic", Music.class);
+//        MusicPlayer musicPlayer2 = new MusicPlayer(music2);
+//        musicPlayer2.playMusic();
 
         context.close();
 

@@ -7,46 +7,9 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:property-placeholder location="classpath:musicPlayer.properties"/>
+<!--    <context:property-placeholder location="classpath:musicPlayer.properties"/>-->
+    <context:component-scan base-package="org.ost.springcourse" /><!--проверяет репозиторий на @Component аннотацию
+     и автоматически создает bean-->
 
-    <bean id="musicClassicBean"
-          class="org.ost.springcourse.ClassicMusic">
-    </bean>
-    <bean id="musicRockBean"
-          class="org.ost.springcourse.RockMusic"
-            init-method="doMyInitialization"
-            destroy-method="doMyDestruction"
-            factory-method="factoryMethodRockMusic">
-        <!--со scope prototype spring не использует destroy-method-->
-        <!--spring не берет на себя полный жизненный цикл бинов с scope prototype-->
-        <!--не завивисимо от того что factory-method factoryMethodRockMusic возвращает объекь new, spring будет
-        возвращать ссылку на один и тот же объект (singleton), под капотом метод factoryMethodRockMusic будет вызван один раз -->
-    </bean>
-    <bean id="musicRapBean"
-          class="org.ost.springcourse.RapMusic">
-    </bean>
-
-    <bean id="listBean" class="java.util.ArrayList">
-        <constructor-arg>
-            <bean class="java.util.Arrays" factory-method="asList">
-                <constructor-arg>
-                    <list>
-                        <ref bean="musicClassicBean"/>
-                        <ref bean="musicRockBean"/>
-                        <ref bean="musicRapBean"/>
-                    </list>
-                </constructor-arg>
-            </bean>
-        </constructor-arg>
-    </bean>
-
-    <bean id="musicPlayer"
-          class="org.ost.springcourse.MusicPlayer"
-          scope="prototype"> <!-- scope задает паттерн создания bean, default scope - singleton -->
-        <property name="list" ref="listBean"/>
-
-        <property name="name" value="${musicPlayer.name}"/>
-        <property name="volume" value="${musicPlayer.volume}"/>
-    </bean>
 
 </beans>
