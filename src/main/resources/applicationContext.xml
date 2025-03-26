@@ -34,7 +34,8 @@
     </bean>
 
     <bean id="musicPlayer"
-          class="org.ost.springcourse.MusicPlayer">
+          class="org.ost.springcourse.MusicPlayer"
+          scope="prototype"> <!-- scope задает паттерн создания bean -->
         <property name="list" ref="listBean"/>
 
         <property name="name" value="${musicPlayer.name}"/>
