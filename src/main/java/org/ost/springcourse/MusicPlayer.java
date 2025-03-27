@@ -60,16 +60,16 @@ public class MusicPlayer {
         return playerVolume;
     }
 
-    @PostConstruct //для работы аннотации необходимо добавить dependency в pom.xml javax.annotation-api
-    //@PostConstruct используется для конкретной initialization объекта MusicPlayer
-    private void myInitMethod() {
-        System.out.println("Some initialization operations");
-    }
-
-    @PreDestroy //для работы аннотации необходимо добавить dependency в pom.xml javax.annotation-api
-    //@PreDestroy используется для конкретного destroy объекта MusicPlayer, не работает с scope prototype
-    private void myDestroyMethod() {
-        System.out.println("Some destroy operations");
-    }
+//    @PostConstruct //для работы аннотации необходимо добавить dependency в pom.xml javax.annotation-api
+//    //@PostConstruct используется для конкретной initialization объекта MusicPlayer
+//    private void myInitMethod() {
+//        System.out.println("Some initialization operations");
+//    }
+//
+//    @PreDestroy //для работы аннотации необходимо добавить dependency в pom.xml javax.annotation-api
+//    //@PreDestroy используется для конкретного destroy объекта MusicPlayer, не работает с scope prototype
+//    private void myDestroyMethod() {
+//        System.out.println("Some destroy operations");
+//    }
 
 }
