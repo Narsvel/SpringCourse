@@ -8,8 +8,9 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import java.util.List;
+import java.util.Random;
 
-@Component
 //@Scope("prototype") //указываем scope(паттерн создания bean) с помощью аннотации
 public class MusicPlayer {
 
@@ -18,38 +19,23 @@ public class MusicPlayer {
     @Value("${musicPlayer.volume}")
     private Integer playerVolume;
 
-//    @Autowired
-//    @Qualifier("classicMusic") //указываем какой bean надо внедрять в Music firstMusic
-    private Music firstMusic;  //через рефлексию spring может использовать @Autowired даже на приватном поле
-//    @Autowired
-//    @Qualifier("rockMusic")
-    private Music secondMusic;
+    private List<Music> list;
 
-    @Autowired //в кострукторе @Qualifier указывается в скобках
-    public MusicPlayer(@Qualifier("classicMusic") Music firstMusic,
-                       @Qualifier("rockMusic") Music secondMusic) {
-        this.firstMusic = firstMusic;
-        this.secondMusic = secondMusic;
+    public MusicPlayer(List<Music> list) {
+        this.list = list;
     }
 
-//    @Autowired
-//    @Qualifier("classicMusic")
-//    public void setFirstMusic(Music firstMusic) {
-//        this.firstMusic = firstMusic;
-//    }
-//    @Autowired
-//    @Qualifier("rockMusic")
-//    public void setSecondMusic(Music secondMusic) {
-//        this.secondMusic = secondMusic;
-//    }
-
     public void playMusic() {
-        System.out.println("Playing: " + firstMusic.getPlaySong());
-        System.out.println("Playing: " + secondMusic.getPlaySong());
+        int randomNumber = new Random().nextInt(3);
+        System.out.println("Playing: " + list.get(randomNumber).getPlaySong());
     }
 
     public String toMusic() {
-        return "Playing: " + firstMusic.getPlaySong() + " and " + secondMusic.getPlaySong();
+        StringBuilder songs = new StringBuilder("Playing: ");
+        for (Music music : list) {
+            songs.append(music.getPlaySong()).append(" ");
+        }
+        return songs.toString();
     }
 
     public String getPlayerName() {

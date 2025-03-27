@@ -20,8 +20,8 @@ public class Main {
         MusicPlayer secondMusicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
         System.out.println(musicPlayer == secondMusicPlayer);
 
-//        Computer computer = context.getBean("computer", Computer.class);
-//        System.out.println(computer);
+        Computer computer = context.getBean("computer", Computer.class);
+        System.out.println(computer);
 
 //        Music music = context.getBean("rockMusic", Music.class);
 //        MusicPlayer musicPlayer = new MusicPlayer(music);
