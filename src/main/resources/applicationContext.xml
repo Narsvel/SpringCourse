@@ -7,9 +7,9 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-<!--    <context:property-placeholder location="classpath:musicPlayer.properties"/>-->
+    <context:property-placeholder location="classpath:musicPlayer.properties"/><!--добавляем файл со значениями
+    musicPlayer.properties в spring-->
     <context:component-scan base-package="org.ost.springcourse" /><!--проверяет репозиторий на @Component аннотацию
      и автоматически создает bean-->
-
 
 </beans>
