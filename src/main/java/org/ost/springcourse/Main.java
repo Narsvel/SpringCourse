@@ -11,7 +11,9 @@ public class Main {
         );
 
         MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
-        musicPlayer.playMusic();
+        musicPlayer.playMusic(MusicalGenre.CLASSIC);
+        musicPlayer.playMusic(MusicalGenre.ROCK);
+        musicPlayer.playMusic(MusicalGenre.RAP);
 
         Computer computer = context.getBean("computer", Computer.class);
         System.out.println(computer);
