@@ -11,7 +11,8 @@ import javax.annotation.PreDestroy;
 import java.util.List;
 import java.util.Random;
 
-//@Scope("prototype") //указываем scope(паттерн создания bean) с помощью аннотации
+@Component
+@Scope("prototype") //указываем scope(паттерн создания bean) с помощью аннотации
 public class MusicPlayer {
 
     @Value("${musicPlayer.name}")
@@ -21,6 +22,7 @@ public class MusicPlayer {
 
     private List<Music> list;
 
+    @Autowired
     public MusicPlayer(List<Music> list) {
         this.list = list;
     }
